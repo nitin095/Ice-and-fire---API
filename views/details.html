@@ -1,0 +1,146 @@
+<section class="ftco-section ftco-slant ftco-slant-white bg-light" ng-if="detailData.type==='books'">
+     <div class="container">
+<div class="row">
+    <div class="col-4 text-center"><img class="img-fluid" ng-src="images/{{detailData.type}}/{{detailData.object.name}}.jpg" style="height:55vmin;"></div>
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12"><h1 class="text-uppercase ftco-uppercase">{{detailData.object.name}}</h1></div>
+            <div class="col-12"><b>ISBN: </b>{{detailData.object.isbn}}</div>
+            <div class="col-12"><b>No. of pages: </b>{{detailData.object.numberOfPages}}</div>
+            <div class="col-12"><b>Publisher: </b>{{detailData.object.publisher}}</div>
+            <div class="col-12"><b>Country: </b>{{detailData.object.country}}</div>
+            <div class="col-12"><b>Media type: </b>{{detailData.object.mediaType}}</div>
+            <div class="col-12"><b>Released: </b>{{detailData.object.released | date : "d MMMM yyyy"}}</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12"><h3>Authors</h3></div>
+    <div class="col-2" ng-repeat="author in detailData.object.authors">
+    <div class="row text-center">
+            <div class="col-12"><display-image object="author" type="authors" url="no"></display-image></div>
+            <div class="col-12">{{author}}</div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="detailData.object.characters == ''">
+    <div class="col-12"><h3>Characters</h3></div>
+    <span class="col-2" ng-repeat="object in detailData.object.characters"><a href="#/details/characters/{{object}}"><display-name></display-name></a><br></span>
+</div>
+<div class="row" ng-hide="detailData.object.povCharacters == ''">
+    <div class="col-12"><h3>Pov Characters</h3></div>
+    <span class="col-4" ng-repeat="object in detailData.object.povCharacters"><a href="#/details/characters/{{object}}"><display-name></display-name></a><br></span>
+</div>
+</div>
+</section>
+
+<section class="ftco-section ftco-slant ftco-slant-white bg-light" ng-if="detailData.type=='characters'">
+     <div class="container">
+<div class="row">
+    <div class="col-4 text-center"><img class="img-fluid" ng-show="detailData.show" ng-src="images/{{detailData.type}}/{{detailData.object.name}}.jpg"  onError="angular.element(this).scope().detailData.show = false" alt="{{detailData.object.name}}" style="height:55vmin;">
+    <img class="img-fluid" ng-hide="detailData.show" ng-src="images/{{detailData.type}}/{{detailData.object.aliases[0]}}.jpg" style="height:55vmin;"></div>
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12"><h1 class="text-uppercase ftco-uppercase">{{detailData.object.name}}</h1></div>
+             <div class="col-12" ng-if="detailData.object.name == ''"><h1 class="text-uppercase ftco-uppercase">{{detailData.object.aliases[0]}}</h1></div>
+            <div class="col-12"><b>Gender: </b>{{detailData.object.gender}}</div>
+            <div class="col-12" ng-hide="detailData.object.culture == ''"><b>Culture: </b>{{detailData.object.culture}}</div>
+            <div class="col-12" ng-hide="detailData.object.born == ''"><b>Born: </b>{{detailData.object.born}}</div>
+            <div class="col-12" ng-hide="detailData.object.died == ''"><b>Died: </b>{{detailData.object.died}}</div>
+            <div class="col-12" ng-hide="detailData.object.father == ''"><b>Father: </b><a href="#/details/characters/{{detailData.object.father}}">{{detailData.father}}</a></div>
+            <div class="col-12" ng-hide="detailData.object.mother == ''"><b>Mother: </b><a href="#/details/characters/{{detailData.object.mother}}">{{detailData.mother}}</a></div>
+            <div class="col-12" ng-hide="detailData.object.spouse == ''"><b>Spouse: </b><a href="#/details/characters/{{detailData.object.spouse}}">{{detailData.spouse}}</a></div>
+            
+             <!-- <div class="col-12" ng-repeat="object in [detailData.object.father,detailData.object.mother,detailData.object.spouse]">
+                 <display-name></display-name>
+             </div> -->
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12"><h3>Books</h3></div>
+    <div class="col-2" ng-repeat="object in detailData.object.books">
+    <a href="#/details/books/{{object}}">
+    <div class="row text-center">
+            <div class="col-12"><display-image object="object" type="books" url="yes"></display-image></div>
+            <div class="col-12"><display-name></display-name></div>
+        </div>
+    </a>
+    </div>
+</div>
+<div class="row" ng-hide="detailData.object.titles == ''">
+    <div class="col-12"><h3>Titles</h3></div>
+    <span class="col-4" ng-repeat="title in detailData.object.titles">{{title}}</span>
+</div>
+<div class="row" ng-hide="detailData.object.aliases == ''">
+    <div class="col-12"><h3>Aliases</h3></div>
+    <span class="col-4" ng-repeat="alias in detailData.object.aliases">{{alias}}</span>
+</div>
+<div class="row" ng-hide="detailData.object.allegiances == ''">
+    <div class="col-12"><h3>Allegiances</h3></div>
+    <span class="col-4" ng-repeat="object in detailData.object.allegiances"><display-name></display-name></span>
+</div>
+<div class="row" ng-hide="detailData.object.tvSeries == ''">
+    <div class="col-12"><h3>TV Series</h3></div>
+    <span class="col-4" ng-repeat="series in detailData.object.tvSeries">{{series}}</span>
+</div>
+<div class="row" ng-hide="detailData.object.playedBy == ''">
+    <div class="col-12"><h3>Played by</h3></div>
+    <span class="col-2" ng-repeat="actor in detailData.object.playedBy">
+        <div class="row text-center">
+            <div class="col-12"><display-image object="actor" type="actors" url="no"></display-image></div>
+            <div class="col-12">{{actor}}</div>
+        </div>
+    </span>
+</div>
+</div>
+</section>
+
+<section class="ftco-section ftco-slant ftco-slant-white bg-light" ng-if="detailData.type=='houses'">
+     <div class="container">
+<div class="row">
+    <div class="col-4"><img class="img-fluid" ng-src="images/{{detailData.type}}/{{detailData.object.name}}.jpg" style="height:55vmin;"></div>
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12"><h1 class="text-uppercase ftco-uppercase">{{detailData.object.name}}</h1></div>
+            <div class="col-12" ng-hide="detailData.object.region == ''"><b>Region:</b> {{detailData.object.region}}</div>
+            <div class="col-12" ng-hide="detailData.object.coatOfArms == ''"><b>Coat of arms:</b> {{detailData.object.coatOfArms}}</div>
+            <div class="col-12" ng-hide="detailData.object.words == ''"><b>Words:</b> {{detailData.object.words}}</div>
+            <div class="col-12" ng-hide="detailData.object.currentLord == ''"><b>Current lord:</b><a href="#/details/characters/{{detailData.object.currentLord}}">{{detailData.lordName}}</a></div>
+            <div class="col-12" ng-hide="detailData.object.heir == ''"><b>Heir:</b> <a href="#/details/characters/{{detailData.object.heir}}">{{detailData.heirName}}</a></div>
+            <div class="col-12" ng-hide="detailData.object.overlord == ''"><b>Overlord:</b> <a href="#/details/houses/{{detailData.object.overlord}}">{{detailData.overLordName}}</a></div>
+            <div class="col-12" ng-hide="detailData.object.founded == ''"><b>Founded:</b> {{detailData.object.founded}}</div>
+            <div class="col-12" ng-hide='detailData.object.founder == ""'><b>Founder:</b>  <a href="#/details/characters/{{detailData.object.founder}}">{{detailData.founderName}}</a></div>
+            <div class="col-12" ng-hide="detailData.object.diedOut == ''"><b>Died out:</b> {{detailData.object.diedOut}}</div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="detailData.object.titles == ''">
+    <div class="col-12"><h3>Titles</h3></div>
+    <span class="col-4" ng-repeat="title in detailData.object.titles">{{title}}</span>
+</div>
+<div class="row" ng-hide="detailData.object.seats == ''">
+    <div class="col-12"><h3>Seats</h3></div>
+    <span class="col-4" ng-repeat="seat in detailData.object.seats">{{seat}}</span>
+</div>
+<div class="row" ng-hide="detailData.object.ancestralWeapons == ''">
+    <div class="col-12"><h3>Ancestral weapons</h3></div>
+    <span class="col-4" ng-repeat="weapon in detailData.object.ancestralWeapons">{{weapon}}</span>
+</div>
+<div class="row" ng-hide="detailData.object.cadetBranches == ''">
+    <div class="col-12"><h3>Cadet Branches</h3></div>
+    <span class="col-4" ng-repeat="object in detailData.object.cadetBranches"><display-name></display-name></span>
+</div>
+<div class="row" ng-hide="detailData.object.swornMembers == ''">
+    <div class="col-12"><h3>Sworn Members</h3></div>
+    <span class="col-3" ng-repeat="object in detailData.object.swornMembers">
+        <div class="row text-center">
+             <a href="#/details/characters/{{object}}">
+            <div class="col-12"><display-image object="object" type="characters" url="yes"></display-image></div>
+            <div class="col-12"><display-name></display-name></div>
+        </a>
+        </div>
+    </span>
+</div>
+</div>
+</section>

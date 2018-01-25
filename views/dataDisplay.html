@@ -1,0 +1,269 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-dark btn-sm d-block d-sm-none" data-toggle="modal" data-target="#exampleModalCenter" ng-if="type=='books'">
+  Filters
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Filters</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  <div class="container-fluid">
+  	<div class="row">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+            <small>Filter by author</small>
+            <select ng-model="apiData.author" ng-options="names for names in ['George R. R. Martin','Elio Garcia','Linda Antonsson']">
+            </select>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+            <small>Filter by publisher</small>
+            <select ng-model="apiData.publisher" ng-options="name for name in ['Bantam Books','Marvel','Dabel Brothers Publishing','Tor Books','Tor Fantasy']">
+            </select>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+            <small>Filter by released year</small><br>
+            <select ng-model="apiData.year" ng-options="year for year in ['1996','1999','2000','2005','2008','2011','2013','2014','2015']">
+            </select>
+        </div>
+    	</div>
+  </div>
+</div>
+      <div class="modal-footer">
+      	 <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.author=undefined;apiData.publisher=undefined;apiData.year=undefined">Reset Filters</button>
+        <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Books Filters-->
+	<div class="container-fluid d-none d-sm-block filterContainer" ng-if="type=='books'">
+    <div class="row">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by author</small>
+            <select ng-model="apiData.author" ng-options="names for names in ['George R. R. Martin','Elio Garcia','Linda Antonsson']">
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by publisher</small>
+            <select ng-model="apiData.publisher" ng-options="name for name in ['Bantam Books','Marvel','Dabel Brothers Publishing','Tor Books','Tor Fantasy']">
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by released year</small><br>
+            <select ng-model="apiData.year" ng-options="year for year in ['1996','1999','2000','2005','2008','2011','2013','2014','2015']">
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Search by book name</small>
+            <input type="text" ng-model="apiData.bookName" class="text-input">
+        </div>
+        <div class="col-6 col-sm-4 col-md-12 col-lg-4 align-self-center">
+            <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.author=undefined;apiData.publisher=undefined;apiData.year=undefined">Reset Filters</button>
+        </div>
+    </div>
+    </div>
+<!--end books filters-->
+
+<!--characters filters-->
+<div class="container-fluid d-none d-sm-block filterContainer" ng-if="type=='characters'">
+    <div class="row">
+    	<div class="col">
+            <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.gender=undefined;apiData.cultureName=undefined;apiData.yearBorn=undefined;apiData.getAliveStatus('');apiData.series=undefined;">Reset Filters</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by gender</small>
+            <select ng-model="apiData.gender" ng-options="gender for gender in ['Male','Female']" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by culture</small>
+            <select ng-model="apiData.cultureName" ng-options="name for name in apiData.cultures" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by born year</small>
+            <select ng-model="apiData.yearBorn" ng-options="year for year in apiData.bornYears" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by alive or dead</small>
+             <select ng-model="apiData.deadAlive" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+             	<option value="true">Alive</option>
+             	<option value="no">Dead</option>
+            </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by tv series</small>
+            <select ng-model="apiData.series" ng-options="series for series in ['Season 1','Season 2','Season 3','Season 4','Season 5','Season 6','Season 7']"></select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Search by name</small>
+            <input type="text" ng-model="apiData.characterName" ng-change="apiData.loadData('characters','1','&name='+apiData.characterName)">
+        </div>
+    </div>
+</div>
+<!--end characters filters-->
+
+<!--houses filters-->
+<div class="container-fluid d-none d-sm-block filterContainer" ng-if="type=='houses'">
+    <div class="row">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Filter by region</small>
+            <select ng-model="apiData.regionName" ng-options="region for region in apiData.regions">
+            </select>
+        </div>
+
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <small>Search by house name</small>
+            <input type="text" ng-model="apiData.houseName">
+        </div>
+
+       <div class="col-6 col-sm-4 col-md-3 col-lg-2 align-self-center">
+        <div class="dropdown">
+  <button class="btn btn-sm dropdown-toggle houses-filter-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More filters
+  </button>
+        <div class="dropdown-menu dropdown-text">
+  		<div class="row">
+  			<div class="col">
+      		Houses having words
+      		</div>
+      </div>
+      <div class="row text-center">
+      	<div class="col" style="text-align: right;">
+    <input type="radio" ng-model="apiData.houseWords" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+    </div>
+    <div class="col" style="text-align: left;">
+  <input type="radio" ng-model="apiData.houseWords" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+  </div>
+    </div>
+  <div class="dropdown-divider"></div>
+   
+      <div class="row">
+  			<div class="col">
+      		Houses having titles
+      		</div>
+      </div>
+      <div class="row">
+      	<div class="col" style="text-align: right;">
+    <input type="radio" ng-model="apiData.houseTitles" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+    </div>
+    <div class="col" style="text-align: left;">
+  <input type="radio" ng-model="apiData.houseTitles" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+  </div>
+    </div>
+   
+  <div class="dropdown-divider"></div>
+    
+     <div class="row">
+  			<div class="col">
+      		Houses having seats
+      		</div>
+      </div>
+      <div class="row">
+      	<div class="col" style="text-align: right;">
+    <input type="radio" ng-model="apiData.houseSeats" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+    </div>
+    <div class="col" style="text-align: left;">
+  <input type="radio" ng-model="apiData.houseSeats" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+  </div>
+    </div>
+   
+  <div class="dropdown-divider"></div>
+   
+     <div class="row">
+  			<div class="col">
+      		Houses that are extinct
+      		</div>
+      </div>
+      <div class="row">
+      	<div class="col" style="text-align: right;">
+    <input type="radio" ng-model="apiData.houseExtinct" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+    </div>
+    <div class="col" style="text-align: left;">
+  <input type="radio" ng-model="apiData.houseExtinct" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+  </div>
+    </div>
+  
+  <div class="dropdown-divider"></div>
+   
+    <div class="row">
+  			<div class="col">
+      		Houses having ancestoral weapons
+      		</div>
+      </div>
+      <div class="row">
+      	<div class="col" style="text-align: right;">
+    <input type="radio" ng-model="apiData.houseWeapons" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)")">Yes
+    </div>
+    <div class="col" style="text-align: left;">
+  <input type="radio" ng-model="apiData.houseWeapons" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+  </div>
+    </div>
+   
+</div>
+</div>
+</div>
+        
+        <div class="col-6 col-sm-4 col-md-3 col-lg-6 align-self-center">
+            <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.regionName=undefined;apiData.houseName=undefined;apiData.houseWords=undefined;apiData.houseTitles=undefined;apiData.houseSeats=undefined;apiData.houseExtinct=undefined;apiData.houseWeapons=undefined;apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons);">Reset Filters</button>
+        </div>
+    </div>
+</div>
+<!--end filters-->
+<div class="row">
+Showing: {{apiData.gender}} {{apiData.cultureName}} {{apiData.deadAlive}} {{apiData.series}}
+</div>
+<div class="row justify-content-center" ng-if="apiData.characters == ''" style="color: red;">
+	No character found with applied filters.
+</div>
+<div class="row">
+<div class="col-2 object-div" ng-repeat="object in apiData.getType(type) | orderBy:'name' | filter: {name: apiData.bookName} | filter: apiData.publisher | filter: apiData.author | filter: { released: apiData.year} | filter: apiData.characterName | filter: {born: apiData.yearBorn} | filter: {tvSeries: apiData.series} | filter: apiData.houseName | filter: {region: apiData.regionName}">
+<a href="#/details/{{type}}/{{object.url}}">
+	<div class="row text-center" style="padding-bottom: 12%; padding-top: 12%">
+			<div class="col-12">
+				<!-- <img class="img-fluid" ng-src="images/{{type}}/{{object.name}}.jpg" style="height: 15vmin;"> -->
+				<img class="img-fluid" ng-src="images/{{type}}/{{object.name}}.jpg" onError="this.src='https://dummyimage.com/600x400/d6ced6/000000.png&text=Ice and Fire'" style="height: 25vmin;">
+				<!-- <img class="img-fluid" ng-show="apiData.show" ng-src="images/{{type}}/{{object.name}}.jpg" onError="angular.element(this).scope().apiData.show = false" style="height: 25vmin;">
+				<img class="img-fluid" ng-hide="apiData.show" ng-src="images/{{type}}/{{object.aliases[0]}}.jpg" style="height:25vmin;"> -->
+			</div>
+			<div class="col-12 object-title">{{object.name}}</div>
+			<div class="col-12 object-title" ng-if="object.name == ''">{{object.aliases[0]}}</div>
+		</div>
+	</a>
+	</div>
+</div>
+
+<div ng-if="type=='characters'">
+<div paging
+  page="5" 
+  page-size="48" 
+  total="2133"
+  paging-action="apiData.loadData('characters',page,'')"
+  class="small"
+  ul-class="pagination-list"
+  active-class="{{activeClass}}"
+  disabled-class="{{disabledClass}}">
+</div> 
+</div>
+<div ng-if="type=='houses'">
+<div paging
+  page="5" 
+  page-size="48" 
+  total="443"
+  paging-action="apiData.loadData('houses',page,'')"
+  class="small"
+  ul-class="pagination-list"
+  active-class="{{activeClass}}"
+  disabled-class="{{disabledClass}}">
+</div> 
+</div>
