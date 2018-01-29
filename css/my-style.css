@@ -8,6 +8,9 @@ h3{
 .ftco-counter .ftco-number{
 	color: rgb(209, 33, 33) !important;
 }
+#logo{
+	cursor: pointer;
+}
 footer{
 	padding: 0% 0% !important;
 }
