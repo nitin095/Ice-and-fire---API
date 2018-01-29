@@ -5,338 +5,319 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Filters</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+      </div><!-- end modal header -->
       <div class="modal-body">
-  <div class="container-fluid">
-  	<div class="row">
-    <div class="col-6 col-sm-6 col-md-4 col-lg-4">
-            <small>Filter by author</small>
-            <select ng-model="apiData.author" ng-options="names for names in ['George R. R. Martin','Elio Garcia','Linda Antonsson']">
-            </select>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
-            <small>Filter by publisher</small>
-            <select ng-model="apiData.publisher" ng-options="name for name in ['Bantam Books','Marvel','Dabel Brothers Publishing','Tor Books','Tor Fantasy']">
-            </select>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
-            <small>Filter by released year</small><br>
-            <select ng-model="apiData.year" ng-options="year for year in ['1996','1999','2000','2005','2008','2011','2013','2014','2015']">
-            </select>
-        </div>
-    	</div>
-  </div>
-</div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+              <small>Filter by author</small>
+              <select ng-model="apiData.author" ng-options="names for names in ['George R. R. Martin','Elio Garcia','Linda Antonsson']">
+              </select>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+              <small>Filter by publisher</small>
+              <select ng-model="apiData.publisher" ng-options="name for name in ['Bantam Books','Marvel','Dabel Brothers Publishing','Tor Books','Tor Fantasy']">
+              </select>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+              <small>Filter by released year</small><br>
+              <select ng-model="apiData.year" ng-options="year for year in ['1996','1999','2000','2005','2008','2011','2013','2014','2015']">
+              </select>
+            </div>
+          </div>
+        </div><!-- end container-fluid -->
+      </div><!-- end modal body -->
       <div class="modal-footer">
-      	 <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.author=undefined;apiData.publisher=undefined;apiData.year=undefined">Reset Filters</button>
+        <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.author=undefined;apiData.publisher=undefined;apiData.year=undefined">Reset Filters</button>
         <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Done</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end books filter modal -->
+      </div><!-- end modal footer -->
+    </div><!-- end modal content -->
+  </div><!-- end modal dialog -->
+</div><!-- end books filter modal -->
 
 <!--Books Filters-->
-	<div class="container-fluid filterContainer" ng-if="type=='books'">
-    <div class="row">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-none d-sm-block">
-            <small>Filter by author</small>
-            <select ng-model="apiData.author" ng-options="names for names in ['George R. R. Martin','Elio Garcia','Linda Antonsson']">
-            </select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-none d-sm-block">
-            <small>Filter by publisher</small>
-            <select ng-model="apiData.publisher" ng-options="name for name in ['Bantam Books','Marvel','Dabel Brothers Publishing','Tor Books','Tor Fantasy']">
-            </select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-none d-sm-block">
-            <small>Filter by year</small><br>
-            <select ng-model="apiData.year" ng-options="year for year in ['1996','1999','2000','2005','2008','2011','2013','2014','2015']">
-            </select>
-        </div>
-        <div class="col-5 col-sm-4 col-md-3 col-lg-2">
-            <small>Search by name</small>
-            <input type="text" ng-model="apiData.bookName" class="text-input">
-        </div>
-        <div class="col-5 col-sm-4 col-md-6 col-lg-2 align-self-center">
-        	<div class="dropdown">
-  <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-style="{color: apiData.sortButtonColor}">
-    {{apiData.sortButton}}
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('name','Name A - Z')">Name A > Z</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('-name','Name Z - A')">Name Z > A</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('authors','Author')">Author</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('publisher','Publisher')">Publisher</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('released','Released year')">Released year</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('numberOfPages','No. of pages')">Number of pages</button>
-  </div>
-</div>
-        </div>
-        <div class="col-6 col-sm-4 col-md-6 col-lg-2 align-self-center d-none d-sm-block">
-            <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.author=undefined;apiData.publisher=undefined;apiData.year=undefined">Reset Filters</button>
-        </div>
-        <div class="col-2 align-self-center d-sm-none">
-     <!-- Button trigger modal -->
-		<button type="button" class="btn transparent-button btn-sm" data-toggle="modal" data-target="#booksModal" ng-if="type=='books'">
-  			<i class="fa fa-filter" style="font-size: 2em;"></i>
-		</button>
-	</div>
+<div class="container-fluid filterContainer" ng-if="type=='books'">
+  <div class="row">
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-none d-sm-block">
+      <small>Filter by author</small>
+      <select ng-model="apiData.author" ng-options="names for names in ['George R. R. Martin','Elio Garcia','Linda Antonsson']">
+      </select>
     </div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-none d-sm-block">
+      <small>Filter by publisher</small>
+      <select ng-model="apiData.publisher" ng-options="name for name in ['Bantam Books','Marvel','Dabel Brothers Publishing','Tor Books','Tor Fantasy']">
+      </select>
     </div>
-<!--end books filters-->
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-none d-sm-block">
+      <small>Filter by year</small><br>
+      <select ng-model="apiData.year" ng-options="year for year in ['1996','1999','2000','2005','2008','2011','2013','2014','2015']">
+      </select>
+    </div>
+    <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+      <small>Search by name</small>
+      <input type="text" ng-model="apiData.bookName" class="text-input">
+    </div>
+    <div class="col-5 col-sm-4 col-md-6 col-lg-2 align-self-center">
+      <div class="dropdown">
+        <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-style="{color: apiData.sortButtonColor}">
+        {{apiData.sortButton}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button" ng-click="apiData.sortBy('name','Name A - Z')">Name A > Z</button>
+          <button class="dropdown-item" type="button" ng-click="apiData.sortBy('-name','Name Z - A')">Name Z > A</button>
+          <button class="dropdown-item" type="button" ng-click="apiData.sortBy('authors','Author')">Author</button>
+          <button class="dropdown-item" type="button" ng-click="apiData.sortBy('publisher','Publisher')">Publisher</button>
+          <button class="dropdown-item" type="button" ng-click="apiData.sortBy('released','Released year')">Released year</button>
+          <button class="dropdown-item" type="button" ng-click="apiData.sortBy('numberOfPages','No. of pages')">Number of pages</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-4 col-md-6 col-lg-2 align-self-center d-none d-sm-block">
+      <!-- Reset button -->
+      <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.author=undefined;apiData.publisher=undefined;apiData.year=undefined">Reset Filters</button>
+    </div>
+    <div class="col-2 align-self-center d-sm-none">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn transparent-button btn-sm" data-toggle="modal" data-target="#booksModal" ng-if="type=='books'">
+      <i class="fa fa-filter" style="font-size: 2em;"></i>
+      </button>
+    </div>
+  </div><!-- end row -->
+</div><!--end books filters-->
 
-<!--characters filters-->
+<!--Characters filters-->
 <div class="container-fluid filterContainer" ng-if="type=='characters'">
-    <div class="row justify-content-end">
-    	
-    		<div class="dropdown">
-  <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-style="{color: apiData.sortButtonColor}">
-    {{apiData.sortButton}}
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('name','Name A - Z')">Name A > Z</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('-name','Name Z - A')">Name Z > A</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('gender','Gender')">Gender</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('culture','Culture')">Culture</button>
+  <div class="row justify-content-end">
+    <div class="dropdown">
+      <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-style="{color: apiData.sortButtonColor}">
+      {{apiData.sortButton}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button" ng-click="apiData.sortBy('name','Name A - Z')">Name A > Z</button>
+        <button class="dropdown-item" type="button" ng-click="apiData.sortBy('-name','Name Z - A')">Name Z > A</button>
+        <button class="dropdown-item" type="button" ng-click="apiData.sortBy('gender','Gender')">Gender</button>
+        <button class="dropdown-item" type="button" ng-click="apiData.sortBy('culture','Culture')">Culture</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.gender=undefined;apiData.cultureName=undefined;apiData.yearBorn=undefined;apiData.deadAlive=undefined;apiData.series=undefined;apiData.characterName=undefined;apiData.loadData('characters','1','')">Reset Filters</button>
   </div>
-</div>
-
-            <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.gender=undefined;apiData.cultureName=undefined;apiData.yearBorn=undefined;apiData.deadAlive=undefined;apiData.series=undefined;apiData.characterName=undefined;apiData.loadData('characters','1','')">Reset Filters</button>
-        
+  <div class="row">
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <small>Filter by gender</small>
+      <select ng-model="apiData.gender" ng-options="gender for gender in ['Male','Female']" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+      </select>
     </div>
-    <div class="row">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <small>Filter by gender</small>
-            <select ng-model="apiData.gender" ng-options="gender for gender in ['Male','Female']" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
-            </select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <small>Filter by culture</small>
-            <select ng-model="apiData.cultureName" ng-options="name for name in apiData.cultures" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
-            </select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <small>Filter by born year</small>
-            <select ng-model="apiData.yearBorn" ng-options="year for year in apiData.bornYears" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
-            </select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <small>Filter by alive or dead</small>
-             <select ng-model="apiData.deadAlive" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
-             	<option value="true">Alive</option>
-             	<option value="no">Dead</option>
-            </select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <small>Filter by tv series</small>
-            <select ng-model="apiData.series" ng-options="series for series in ['Season 1','Season 2','Season 3','Season 4','Season 5','Season 6']"></select>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <small>Search by name</small>
-            <input type="text" ng-model="apiData.characterName" ng-change="apiData.loadData('characters','1','&name='+apiData.characterName)">
-        </div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <small>Filter by culture</small>
+      <select ng-model="apiData.cultureName" ng-options="name for name in apiData.cultures" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+      </select>
     </div>
-</div>
-<!--end characters filters-->
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <small>Filter by born year</small>
+      <select ng-model="apiData.yearBorn" ng-options="year for year in apiData.bornYears" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+      </select>
+    </div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <small>Filter by alive or dead</small>
+      <select ng-model="apiData.deadAlive" ng-change="apiData.loadData('characters','1','&gender='+apiData.gender+'&culture='+apiData.cultureName+'&born='+apiData.yearBorn+'&isAlive='+apiData.deadAlive)">
+        <option value="true">Alive</option>
+        <option value="no">Dead</option>
+      </select>
+    </div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <small>Filter by tv series</small>
+      <select ng-model="apiData.series" ng-options="series for series in ['Season 1','Season 2','Season 3','Season 4','Season 5','Season 6']"></select>
+    </div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <small>Search by name</small>
+      <input type="text" ng-model="apiData.characterName" ng-change="apiData.loadData('characters','1','&name='+apiData.characterName)">
+    </div>
+  </div>
+</div><!--end characters filters-->
 
-<!--houses filters-->
+<!--Houses filters-->
 <div class="container-fluid filterContainer" ng-if="type=='houses'">
-    <div class="row justify-content-center">
-        <div class="col-6 col-sm-5 col-md-5 col-lg-2">
-            <small>Filter by region</small>
-            <select ng-model="apiData.regionName" ng-options="region for region in apiData.regions">
-            </select>
-        </div>
-
+  <div class="row justify-content-center">
     <div class="col-6 col-sm-5 col-md-5 col-lg-2">
-            <small>Search by house name</small>
-            <input type="text" ng-model="apiData.houseName">
-        </div>
-
-       <div class="col-4 col-sm-4 col-md-3 col-lg-2 align-self-center">
-        <div class="dropdown">
-  <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    More filters
-  </button>
+      <small>Filter by region</small>
+      <select ng-model="apiData.regionName" ng-options="region for region in apiData.regions">
+      </select>
+    </div>
+    <div class="col-6 col-sm-5 col-md-5 col-lg-2">
+      <small>Search by house name</small>
+      <input type="text" ng-model="apiData.houseName">
+    </div>
+    <div class="col-4 col-sm-4 col-md-3 col-lg-2 align-self-center">
+      <div class="dropdown">
+        <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More filters
+        </button>
         <div class="dropdown-menu dropdown-text">
-  		<div class="row">
-  			<div class="col">
-      		Houses having words
-      		</div>
-      </div>
-      <div class="row text-center">
-      	<div class="col" style="text-align: right;">
-    <input type="radio" ng-model="apiData.houseWords" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
-    </div>
-    <div class="col" style="text-align: left;">
-  <input type="radio" ng-model="apiData.houseWords" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
-  </div>
-    </div>
-  <div class="dropdown-divider"></div>
-   
-      <div class="row">
-  			<div class="col">
-      		Houses having titles
-      		</div>
-      </div>
-      <div class="row">
-      	<div class="col" style="text-align: right;">
-    <input type="radio" ng-model="apiData.houseTitles" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
-    </div>
-    <div class="col" style="text-align: left;">
-  <input type="radio" ng-model="apiData.houseTitles" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
-  </div>
-    </div>
-   
-  <div class="dropdown-divider"></div>
-    
-     <div class="row">
-  			<div class="col">
-      		Houses having seats
-      		</div>
-      </div>
-      <div class="row">
-      	<div class="col" style="text-align: right;">
-    <input type="radio" ng-model="apiData.houseSeats" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
-    </div>
-    <div class="col" style="text-align: left;">
-  <input type="radio" ng-model="apiData.houseSeats" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
-  </div>
-    </div>
-   
-  <div class="dropdown-divider"></div>
-   
-     <div class="row">
-  			<div class="col">
-      		Houses that are extinct
-      		</div>
-      </div>
-      <div class="row">
-      	<div class="col" style="text-align: right;">
-    <input type="radio" ng-model="apiData.houseExtinct" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
-    </div>
-    <div class="col" style="text-align: left;">
-  <input type="radio" ng-model="apiData.houseExtinct" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
-  </div>
-    </div>
-  
-  <div class="dropdown-divider"></div>
-   
-    <div class="row">
-  			<div class="col">
-      		Houses having ancestoral weapons
-      		</div>
-      </div>
-      <div class="row">
-      	<div class="col" style="text-align: right;">
-    <input type="radio" ng-model="apiData.houseWeapons" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)")">Yes
-    </div>
-    <div class="col" style="text-align: left;">
-  <input type="radio" ng-model="apiData.houseWeapons" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
-  </div>
-    </div>
-   
-</div>
-</div>
-</div>
-        
-        <div class="col-4 col-sm-4 col-md-3 col-lg-2 align-self-center">
-        	<div class="dropdown">
-  <button class="btn btn-sm dropdown-toggle transparent-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-style="{color: apiData.sortButtonColor}">
-    {{apiData.sortButton}}
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('name','Name A - Z')">Name A > Z</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('-name','Name Z - A')">Name Z > A</button>
-    <button class="dropdown-item" type="button" ng-click="apiData.sortBy('region','Region')">Region</button>
-  </div>
-</div>
+          <div class="row">
+            <div class="col">
+              Houses having words
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col" style="text-align: right;">
+              <input type="radio" ng-model="apiData.houseWords" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+            </div>
+            <div class="col" style="text-align: left;">
+              <input type="radio" ng-model="apiData.houseWords" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="row">
+            <div class="col">
+              Houses having titles
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="text-align: right;">
+              <input type="radio" ng-model="apiData.houseTitles" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+            </div>
+            <div class="col" style="text-align: left;">
+              <input type="radio" ng-model="apiData.houseTitles" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="row">
+            <div class="col">
+              Houses having seats
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="text-align: right;">
+              <input type="radio" ng-model="apiData.houseSeats" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+            </div>
+            <div class="col" style="text-align: left;">
+              <input type="radio" ng-model="apiData.houseSeats" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="row">
+            <div class="col">
+              Houses that are extinct
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="text-align: right;">
+              <input type="radio" ng-model="apiData.houseExtinct" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">Yes
+            </div>
+            <div class="col" style="text-align: left;">
+              <input type="radio" ng-model="apiData.houseExtinct" value="false" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)">No
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="row">
+            <div class="col">
+              Houses having ancestoral weapons
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="text-align: right;">
+              <input type="radio" ng-model="apiData.houseWeapons" value="true" ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons)" ) ">Yes
+            </div>
+            <div class="col " style="text-align: left; ">
+              <input type="radio " ng-model="apiData.houseWeapons " value="false " ng-click="apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons) ">No
+            </div>
+          </div>
         </div>
-        <div class="col-4 col-sm-4 col-md-3 col-lg-4 align-self-center">
-            <button type="button" class="btn btn-outline-dark btn-sm filter-reset-button" ng-click="apiData.regionName=undefined;apiData.houseName=undefined;apiData.houseWords=undefined;apiData.houseTitles=undefined;apiData.houseSeats=undefined;apiData.houseExtinct=undefined;apiData.houseWeapons=undefined;apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons);">Reset Filters</button>
+      </div>
+    </div>
+    <!-- Sort by button -->
+    <div class="col-4 col-sm-4 col-md-3 col-lg-2 align-self-center ">
+      <div class="dropdown ">
+        <button class="btn btn-sm dropdown-toggle transparent-button " type="button " id="dropdownMenu2 " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false " ng-style="{color: apiData.sortButtonColor} ">
+        {{apiData.sortButton}}
+        </button>
+        <div class="dropdown-menu " aria-labelledby="dropdownMenu2 ">
+          <button class="dropdown-item " type="button " ng-click="apiData.sortBy( 'name', 'Name A - Z') ">Name A > Z</button>
+          <button class="dropdown-item " type="button " ng-click="apiData.sortBy( '-name', 'Name Z - A') ">Name Z > A</button>
+          <button class="dropdown-item " type="button " ng-click="apiData.sortBy( 'region', 'Region') ">Region</button>
         </div>
-    </div>
-</div>
-<!--end filters-->
-<div class="row justify-content-center" ng-if="type=='characters' && apiData.characters == ''" style="color: red;">
-	No character found!
-</div>
-<div class="row justify-content-center" ng-if="type=='houses' && apiData.houses == ''" style="color: red;">
-	No house found!
-</div>
-
-<div class="row" id="objects-row">
-<div ng-class="type=='books'?'col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2':'col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3'" ng-repeat="object in apiData.getType(type) | orderBy:apiData.sort | filter: {name: apiData.bookName} | filter: apiData.publisher | filter: apiData.author | filter: { released: apiData.year} | filter: apiData.characterName | filter: {born: apiData.yearBorn} | filter: {tvSeries: apiData.series} | filter: apiData.houseName | filter: {region: apiData.regionName}">
-<a href="#/details/{{type}}/{{object.url}}">
-	<div class="row text-center object-div" ng-if="type=='books'" style="padding-bottom: 12%; padding-top: 12%">
-			<div class="col-12">
-				<!-- <img class="img-fluid" ng-src="images/{{type}}/{{object.name}}.jpg" style="height: 15vmin;"> -->
-				<img class="img-fluid" ng-src="images/{{type}}/{{object.name}}.jpg" onError="this.src='https://dummyimage.com/600x400/d6ced6/000000.png&text=Ice and Fire'" style="height: 23vmin;">
-				<!-- <img class="img-fluid" ng-show="apiData.show" ng-src="images/{{type}}/{{object.name}}.jpg" onError="angular.element(this).scope().apiData.show = false" style="height: 25vmin;">
-				<img class="img-fluid" ng-hide="apiData.show" ng-src="images/{{type}}/{{object.aliases[0]}}.jpg" style="height:25vmin;"> -->
-			</div>
-			<div class="col-12 object-title">{{object.name}}</div>
-			<div class="col-12 object-title" ng-if="object.name == ''">{{object.aliases[0]}}</div>
-		</div>
-	
-
-	<div class="card object-div" ng-if="type=='characters'||type=='houses'" style="margin-bottom: 12%;">
-		<div class="row">
-			<div class="col-4 align-self-center justify-content-center" id="card-img" style="height: 12vmin;">
-  <img class="img-fluid card-img-top" ng-class="type=='houses'?'scale-down':''" ng-src="images/{{type}}/{{object.name}}.jpg" onError="this.style.display='none'" style="height: 12vmin;">
-  <img class="img-fluid" ng-src="images/{{type}}/{{object.aliases[0]}}.jpg" onError="this.style.display='none'" style="height:12vmin;">
+      </div>
+    </div><!-- end sort by button -->
+    <!-- Resrt button -->
+    <div class="col-4 col-sm-4 col-md-3 col-lg-4 align-self-center ">
+      <button type="button " class="btn btn-outline-dark btn-sm filter-reset-button " ng-click="apiData.regionName=undefined;apiData.houseName=undefined;apiData.houseWords=undefined;apiData.houseTitles=undefined;apiData.houseSeats=undefined;apiData.houseExtinct=undefined;apiData.houseWeapons=undefined;apiData.houseFilter(apiData.houseWords,apiData.houseTitles,apiData.houseSeats,apiData.houseExtinct,apiData.houseWeapons); ">Reset Filters</button>
+    </div><!-- end reset button -->
   </div>
-  <div class="col-7 align-self-center" style="padding: 0px;">
-  <div class="character-name">
-    {{object.name}}<br>
-    <div ng-if="type=='characters'" class="character-info">
-    <small ng-hide="object.name==object.aliases[0]">{{object.aliases[0]}}</small><br>
-    <small>{{object.culture}}</small>
-    </div>
-    <div ng-if="type=='houses'" class="character-info">
-    <small ng-hide="object.name==object.aliases[0]">{{object.region}}</small><br>
-    <div class="d-none d-md-block" style="margin-top: 2%;">
-    <img src="images/icons/words.png" ng-hide="object.words==''" title="Have words" style="height: 2.5vmin;">
-    <img src="images/icons/titles.png" ng-hide="object.titles[0]==''" title="Have titles" style="height: 2.5vmin;">
-    <img src="images/icons/seats.png" ng-hide="object.seats[0]==''" title="Have seats" style="height: 2.5vmin;">
-    <img src="images/icons/extinct.png" ng-hide="object.diedOut==''" title="Extinct" style="height: 2.5vmin;">
-    <img src="images/icons/weapons.png" ng-hide="object.ancestralWeapons[0]==''" title="Has ancestoral weapons" style="height: 3vmin;">
-    </div>
-    </div>
-  </div>
-<!--   <h2>{{object.playedBy[0]}}</h2> -->
-  </div>
-  </div>
+</div><!--end houses filters-->
+
+<div class="row justify-content-center " ng-if="type=='characters' && apiData.characters=='' " style="color: red; ">
+  No character found!
+</div>
+<div class="row justify-content-center " ng-if="type=='houses' && apiData.houses=='' " style="color: red; ">
+  No house found!
 </div>
 
-</a>
-	</div>
-</div>
+<!-- Object row -->
+<div class="row " id="objects-row ">
+  <div ng-class="type=='books' ? 'col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2': 'col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3' " ng-repeat="object in apiData.getType(type) | orderBy:apiData.sort | filter: {name: apiData.bookName} | filter: apiData.publisher | filter: apiData.author | filter: { released: apiData.year} | filter: apiData.characterName | filter: {born: apiData.yearBorn} | filter: {tvSeries: apiData.series} | filter: apiData.houseName | filter: {region: apiData.regionName} ">
+    <a href="#/details/{{type}}/{{object.url}} ">
+      <div class="row text-center object-div " ng-if="type=='books' " style="padding-bottom: 12%; padding-top: 12% ">
+        <div class="col-12 ">
+          <!-- <img class="img-fluid " ng-src="images/{{type}}/{{object.name}}.jpg " style="height: 15vmin; "> -->
+          <img class="img-fluid " ng-src="images/{{type}}/{{object.name}}.jpg " onError="this.src='https://dummyimage.com/600x400/d6ced6/000000.png&text=Ice and Fire' " style="height: 23vmin; ">
+          <!-- <img class="img-fluid " ng-show="apiData.show " ng-src="images/{{type}}/{{object.name}}.jpg " onError="angular.element(this).scope().apiData.show=f alse " style="height: 25vmin; ">
+            <img class="img-fluid " ng-hide="apiData.show " ng-src="images/{{type}}/{{object.aliases[0]}}.jpg " style="height:25vmin; "> -->
+        </div>
+        <div class="col-12 object-title ">{{object.name}}</div>
+        <div class="col-12 object-title " ng-if="object.name=='' ">{{object.aliases[0]}}</div>
+      </div>
+      <div class="card object-div " ng-if="type=='characters' ||type=='houses' " style="margin-bottom: 12%; ">
+        <div class="row ">
+          <div class="col-4 align-self-center justify-content-center " id="card-img " style="height: 12vmin; ">
+            <img class="img-fluid card-img-top " ng-class="type=='houses' ? 'scale-down': '' " ng-src="images/{{type}}/{{object.name}}.jpg " onError="this.style.display='none' " style="height: 12vmin; ">
+            <img class="img-fluid " ng-src="images/{{type}}/{{object.aliases[0]}}.jpg " onError="this.style.display='none' " style="height:12vmin; ">
+          </div>
+          <div class="col-7 align-self-center " style="padding: 0px; ">
+            <div class="character-name ">
+              {{object.name}}<br>
+              <div ng-if="type=='characters' " class="character-info ">
+                <small ng-hide="object.name==object.aliases[0] ">{{object.aliases[0]}}</small><br>
+                <small>{{object.culture}}</small>
+              </div>
+              <div ng-if="type=='houses' " class="character-info ">
+                <small ng-hide="object.name==object.aliases[0] ">{{object.region}}</small><br>
+                <div class="d-none d-md-block " style="margin-top: 2%; ">
+                  <img src="images/icons/words.png " ng-hide="object.words=='' " title="Have words " style="height: 2.5vmin; ">
+                  <img src="images/icons/titles.png " ng-hide="object.titles[0]=='' " title="Have titles " style="height: 2.5vmin; ">
+                  <img src="images/icons/seats.png " ng-hide="object.seats[0]=='' " title="Have seats " style="height: 2.5vmin; ">
+                  <img src="images/icons/extinct.png " ng-hide="object.diedOut=='' " title="Extinct " style="height: 2.5vmin; ">
+                  <img src="images/icons/weapons.png " ng-hide="object.ancestralWeapons[0]=='' " title="Has ancestoral weapons " style="height: 3vmin; ">
+                </div>
+              </div>
+            </div>
+            <!--   <h2>{{object.playedBy[0]}}</h2> -->
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div><!-- end object row -->
 
- 
-
-<div ng-if="type=='characters'">
-<div paging
-  page="1" 
-  page-size="48" 
-  total="2133"
-  paging-action="apiData.loadData('characters',page,'')"
-  class="small"
-  ul-class="pagination-list"
-  active-class="pagination-active-page">
-</div> 
+<!-- Pagination -->
+<div ng-if="type=='characters' ">
+  <div paging
+    page="1 " 
+    page-size="48 " 
+    total="2133 "
+    paging-action="apiData.loadData( 'characters',page, '') "
+    class="small "
+    ul-class="pagination-list "
+    active-class="pagination-active-page "></div>
 </div>
-<div ng-if="type=='houses'">
-<div paging
-  page="1" 
-  page-size="48" 
-  total="443"
-  paging-action="apiData.loadData('houses',page,'')"
-  class="small"
-  ul-class="pagination-list"
-  active-class="pagination-active-page">
-</div> 
+<div ng-if="type=='houses' ">
+  <div paging
+    page="1 " 
+    page-size="48 " 
+    total="443 "
+    paging-action="apiData.loadData( 'houses',page, '') "
+    class="small "
+    ul-class="pagination-list "
+    active-class="pagination-active-page "></div>
 </div>

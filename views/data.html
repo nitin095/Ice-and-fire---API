@@ -1,17 +1,17 @@
 <section class="ftco-section ftco-slant" ng-class="type" ng-class-odd="'ftco-slant-white bg-light'" ng-repeat="type in ['books','characters','houses']">
     <div class="container">
-    	<div class="row">
-         	 <div class="col-md-12 text-center">
-				<h2 class="text-uppercase ftco-uppercase">{{type}}</h2>
-				<div class="row justify-content-center mb-5">
-              <div class="col-md-7">
-              	<p class="lead" ng-if="type=='books'">All books in Ice And Fire universe.</p>
-              	<p class="lead" ng-if="type=='characters'">A Character is an individual within the Ice And Fire universe.</p>
-                <p class="lead" ng-if="type=='houses'">A House is a house branch within the Ice And Fire universe.</p>
-              </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="text-uppercase ftco-uppercase">{{type}}</h2>
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7">
+                        <p class="lead" ng-if="type=='books'">All books in Ice And Fire universe.</p>
+                        <p class="lead" ng-if="type=='characters'">A Character is an individual within the Ice And Fire universe.</p>
+                        <p class="lead" ng-if="type=='houses'">A House is a house branch within the Ice And Fire universe.</p>
+                    </div>
+                </div>
             </div>
-			</div>
-		</div>
-		<display-data></display-data>
-</div>
+        </div>
+        <display-data></display-data>
+    </div>
 </section>
