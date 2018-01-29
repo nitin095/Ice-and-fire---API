@@ -163,6 +163,12 @@ $(document).ready(function($) {
 	};
 	OnePageNav();
 
+
+	$("#logo").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#section-home").offset().top},
+        'slow');
+});
 	$(".btn-main").click(function() {
     $('html,body').animate({
         scrollTop: $(".books").offset().top},
