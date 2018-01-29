@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5,
       padding-bottom: 0.7rem !important;
       color: #000 !important; }
       .ftco-navbar-light.scrolled .nav-link.active {
-        color: #4586FF !important; }
+        color: rgb(209, 33, 33)  !important; }
     .ftco-navbar-light.scrolled.awake {
       margin-top: 0px;
       -webkit-transition: .3s all ease-out;
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5,
   @media screen and (max-width: 768px) {
     .ftco-cover .btn {
       width: 100% !important;
-      border: 1px solid red; } }
+      border: 1px solid rgb(209, 33, 33); } }
   .ftco-cover a {
     position: relative;
     color: #fff; }
@@ -436,7 +436,7 @@ textarea {
         background: #4586FF; }
   .ftco-owl:hover .owl-nav {
     visibility: visible;
-    opacity: 1; }
+    opacity: 0.5; }
 
 @media screen and (max-width: 768px) {
   #map {

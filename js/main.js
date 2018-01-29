@@ -163,7 +163,81 @@ $(document).ready(function($) {
 	};
 	OnePageNav();
 
+	$(".btn-main").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".books").offset().top},
+        'slow');
+});
+	$("#nav-home").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#section-home").offset().top},
+        'slow');
+});
+		$("#nav-books").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".books").offset().top},
+        'slow');
+});
+
+	$("#nav-characters").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".characters").offset().top},
+        'slow');
+});
+	$("#nav-houses").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".houses").offset().top},
+        'slow');
+});
+
+// $("#nav-books").click(function() {
+// 	alert("click to kaam kar raha hai.");
+// 	$("#nav-books").css("color", "red");
+// });
+var home = $('#section-home').offset().top - 100;
+var books;
+var characters;
+var houses;
+setTimeout(
+  function() 
+  {
+  	books = $(".books").offset().top -100;
+    characters = $('.characters').offset().top - 100;
+    houses = $('.houses').offset().top;
+  }, 4000);
 
 
+// on scroll, 
+$(window).on('scroll',function(){
+
+    // we round here to reduce a little workload
+    stop = Math.round($(window).scrollTop());
+        $('#nav-home').css("color", "rgb(209, 33, 33)");
+         $('#nav-books').css("color", "grey");
+          $('#nav-characters').css("color", "grey");
+           $('#nav-houses').css("color", "grey");
+    
+    if (stop > books) {
+    	  $('#nav-home').css("color", "black");
+         $('#nav-books').css("color", "red");
+          $('#nav-characters').css("color", "black");
+           $('#nav-houses').css("color", "black");
+    } 
+     if (stop > characters) {
+        $('#nav-home').css("color", "black");
+         $('#nav-books').css("color", "black");
+          $('#nav-characters').css("color", "red");
+           $('#nav-houses').css("color", "black");
+    } 
+      if (stop > houses) {
+      $('#nav-home').css("color", "black");
+         $('#nav-books').css("color", "black");
+          $('#nav-characters').css("color", "black");
+           $('#nav-houses').css("color", "red");
+    } 
+});
+
+   
+      
 });
 

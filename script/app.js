@@ -10,19 +10,21 @@ app.controller('mainController', ['$http', function($http) {
  this.cultures = [];
  this.bornYears = [];
  this.regions = [];
+ this.sort = "name";
+ this.sortButton = "Sort by";
+ this.sortButtonColor = "";
  //function to 'GET' json data by providing a url
  this.loadData = function(url,pageNumber,filter) {
+  console.log(filter);
   if (filter==='&name=') {
         filter = '';
       }
-  console.log("page no. is "+pageNumber+" filter is "+filter);
    $http({
     method: 'GET',
-    url: 'https://www.anapioficeandfire.com/api/'+url+'?page='+pageNumber+'&pageSize=50'+filter
+    url: 'https://www.anapioficeandfire.com/api/'+url+'?page='+pageNumber+'&pageSize=48'+filter
    }).then(function successCallback(response) {
     // this callback will be called asynchronously
     // when the response is available
-    console.log('https://www.anapioficeandfire.com/api/'+url+'?page='+pageNumber+'&pageSize=50'+filter);
     if (url==='books') {
     main.books = response.data;
     }
@@ -31,6 +33,7 @@ app.controller('mainController', ['$http', function($http) {
       main.characters = response.data;
       main.getAllCultures();
       main.getAllBornYears();
+      main.checkNames();
     }
     if (url==='houses') {
       main.houses = response.data;
@@ -46,6 +49,15 @@ app.controller('mainController', ['$http', function($http) {
  this.loadData('books','1','');
  this.loadData('characters','1','');
  this.loadData('houses','1','');
+ this.checkNames = function(){
+  for (x in this.characters){
+    if(this.characters[x].name==""){
+      this.characters[x].name = this.characters[x].aliases[0];
+    }
+  } 
+  console.log("after checking:");
+  console.log(this.characters);
+ };
  this.getType = function(type){
   if (type=='books') {
     return this.books;
@@ -57,6 +69,7 @@ app.controller('mainController', ['$http', function($http) {
     return this.houses;
   }
  };
+ 
  this.getAllCultures = function(){
   for (var i = 0; i < this.characters.length; i++) {
       this.cultures[this.cultures.length] = this.characters[i].culture;
@@ -75,16 +88,25 @@ app.controller('mainController', ['$http', function($http) {
       this.regions = [...new Set(this.regions)];
   }
  };
-
+ this.sortBy = function(option,buttonText){
+  this.sort = option;
+  this.sortButton = "Sort by: "+buttonText;
+  this.sortButtonColor = "rgba(209,33,33,1)";
+ };
   this.houseFilter = function(words,titles,seats,extinct,weapons){
      this.loadData('houses','1','&hasWords='+words+'&hasTitles='+titles+'&hasSeats='+seats+'&hasDiedOut='+extinct+'&hasAncestralWeapons='+weapons);
   };
+
+
+angular.element( document.querySelector( '#ftco-navbar' ) ).show();
+angular.element( document.querySelector( '#section-counter' ) ).show();
+angular.element( document.querySelector( '#section-home' ) ).show();
 
 }]); //end mainController
 
 
 
-app.controller('detailsController', ['$http','$routeParams', function($http,$routeParams) {
+app.controller('detailsController', ['$http','$routeParams', '$anchorScroll', function($http,$routeParams, $anchorScroll) {
   this.url = $routeParams.url;
   this.type = $routeParams.type;
   this.object = [];
@@ -96,6 +118,7 @@ app.controller('detailsController', ['$http','$routeParams', function($http,$rou
   this.mother = "";
   this.spouse = "";
   this.show = true;
+  this.numberOfCharacters = 100;
   main = this;
  //function to 'GET' json data by providing a url
  this.loadObject = function() {
@@ -145,5 +168,21 @@ app.controller('detailsController', ['$http','$routeParams', function($http,$rou
       main.spouse = response.data.name;
     });
   };
+
+  this.loadMoreCharacters = function(){
+    this.numberOfCharacters += 100;
+  };
+
+angular.element( document.querySelector( '#ftco-navbar' ) ).hide();
+angular.element( document.querySelector( '#section-counter' ) ).hide();
+angular.element( document.querySelector( '#section-home' ) ).hide();
+
+
 }]); //end detailsController
 
+app.run(function($rootScope, $location, $anchorScroll, $routeParams,$window) {
+  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+    $location.hash($routeParams.scrollTo);
+    $anchorScroll();  
+  });
+});

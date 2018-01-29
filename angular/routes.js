@@ -3,7 +3,8 @@ app.config(['$routeProvider', function($routeProvider) {
   .when('/', {
    templateUrl: 'views/data.html',
    controller: 'mainController',
-   controllerAs: 'apiData'
+   controllerAs: 'apiData',
+  disableCache: true
   })
   .when('/details/:type/:url*', {
    templateUrl: 'views/details.html',

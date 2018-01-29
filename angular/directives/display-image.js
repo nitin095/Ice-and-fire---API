@@ -1,7 +1,7 @@
 app.directive('displayImage',['$http', function($http){
   return{
     restrict: 'E',
-    template : '<img class="img-fluid" ng-src="images/{{type}}/{{myData}}.jpg" style="height: 15vmin;">',
+    template : '<img class="img-fluid" ng-src="images/{{type}}/{{myData}}.jpg" style="height: 15vmin;" onError=this.style.display="none">',
     scope : {
     	object: '=',
     	type: '@',

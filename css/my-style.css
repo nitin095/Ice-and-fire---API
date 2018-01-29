@@ -5,6 +5,42 @@ h3{
 	border-bottom: 2px solid black;
 	margin-top: 5%;
 }
+.ftco-counter .ftco-number{
+	color: rgb(209, 33, 33) !important;
+}
+footer{
+	padding: 0% 0% !important;
+}
+footer a{
+	color: rgba(255, 255, 255, 0.3) !important;
+}
+footer a:hover{
+	color: rgb(209, 33, 33) !important
+}
+.btn-main{
+	background-color: rgba(0,0,0,0.7);
+	color: #cbced3 !important;
+}
+.btn-main:hover {
+	color: rgb(209, 33, 33) !important;
+}
+.back-button{
+	font-size: 2em;
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 0px;
+	padding: 0% 5%;
+	position: fixed;
+	z-index:1000;
+	top: 5%;
+	left: 0;
+}
+.nav-item-link{
+	cursor: pointer;
+	padding: 0px 10px;
+}
+.nav-item-link:hover{
+	color: rgb(209, 33, 33) !important;
+}
 .object-title{
 	border-top: 1px solid black;
 	/*border-radius: 20px;*/
@@ -13,11 +49,20 @@ h3{
 	transition: all .2s ease-in-out;
 }
 .object-div:hover {
-	-webkit-box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.75);
-box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.75);
-transform: scale(1.1);
-/*background-color: rgba(0,0,0,0.3);*/
+	-webkit-box-shadow: 0px 8px 27px -11px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 8px 27px -11px rgba(0,0,0,0.75);
+box-shadow: 0px 8px 27px -11px rgba(0,0,0,0.75);
+transform: scale(1.02);
+}
+.scale-down{
+	transform: scale(0.8);
+}
+.character-name{
+	/*padding-top: 8%;*/
+	line-height: 100%;
+}
+.character-info{
+	line-height: 80%;
 }
 .dropdown-text {
 	font-size: 0.8em;
@@ -26,6 +71,11 @@ transform: scale(1.1);
 }
 .form {
 	padding: 0px;
+}
+.reduced-line-spacing{
+	line-height: 100%;
+	margin-top: 0.3em;
+	margin-bottom: 0.5em;
 }
 a:link {
      text-decoration: none;
@@ -48,6 +98,7 @@ select {
      border-left: 0px;
      border-right: 0px;
      border-bottom: solid #d12121 2px;
+     background-color: transparent;
      width: 100%;
 }
  option:checked {
@@ -59,7 +110,8 @@ option {
 	font-size: 0.8em;
 }
 option:hover {
-	background-color: black;
+	background-color:  #d12121;
+	color: white;
 }
 select:focus {
 	outline:0;
@@ -72,6 +124,7 @@ input[type="text"]{
      border-left: 0px;
      border-right: 0px;
 	 border-bottom: solid #d12121 2px;
+	 background-color: transparent;
 }
 input[type="text"]:focus {
 	 width: 115%;
@@ -87,9 +140,9 @@ input[type="text"]:focus {
 	font-size: 0.6em !important; 
 	float: right;
 	}
- .houses-filter-button {
- 	font-size: 0.6em !important; 
- 	background-color: white;
+ .transparent-button {
+ 	font-size: 0.7em !important; 
+ 	background-color: transparent;
  }
 
  /*medium screen only*/
@@ -98,14 +151,42 @@ input[type="text"]:focus {
 	border: 0px; 
 	}
  }
+  /*small screen only*/
+ @media only screen and (max-width: 767px) and (min-width: 576px)  {
+.filter-reset-button {
+	border: 0px; 
+	}
+ }
+ /*smaller than small screens*/
+  @media only screen and (max-width: 575px){
+  	.text-center-on-mobile{
+	text-align: center;
+}
+.filter-reset-button{
+	border: 0px;
+}
+  }
+
  ul.pagination-list{
- 	margin-top: 5%;
+ 	margin-top: 10%;
  	text-align: center;
+ 	padding: 0px;
  } 
  ul.pagination-list li{
  	list-style-type: none;
- 	display:inline;
+ 	display:inline-block;
  	border-bottom: 2px solid rgba(209,33,33,1);
- 	padding: 2%;
+ 	padding: 0% 2%;
+ 	padding-bottom: 1%;
+ 	margin-bottom: 1%;
  	font-weight: bold;
+ }
+  ul.pagination-list li:hover{
+  	transform: scale(1.5);
+ 	transition: all .2s ease-in-out;
+ }
+  li.pagination-active-page a{
+  	display: block;
+  	transform: scale(1.5);
+ 	color: rgba(209,33,33,1);
  }
